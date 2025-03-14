@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.dev.usermanager.dto.UserRequestDto;
+import io.dev.usermanager.dto.UserRequestUpdatePasswordDto;
 import io.dev.usermanager.dto.UserResponseDto;
 import io.dev.usermanager.model.UserModel;
 import io.dev.usermanager.service.UserService;
@@ -99,7 +100,7 @@ public class UserController {
     }
     
     @PatchMapping("/password")
-    public ResponseEntity<?> updateUser(@RequestParam String username, @RequestBody String newPassword){
+    public ResponseEntity<?> updateUser(@RequestParam String username, @RequestBody UserRequestUpdatePasswordDto updatePasswordDto){
         
         Optional<UserModel> userOptional = userService.findByUsername(username);
 
@@ -111,7 +112,7 @@ public class UserController {
 
         UserModel user = userOptional.get();
 
-        user.setPassword(newPassword);
+        user.setPassword(updatePasswordDto.getPassword());
 
         userService.save(user);
 
