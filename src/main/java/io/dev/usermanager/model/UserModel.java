@@ -26,13 +26,13 @@ public class UserModel {
     @Column(name = "local", nullable = false)
     private Integer local;
 
-    @Column(name = "username", nullable = false)
+    @Column(name = "username", nullable = false, length = 40)
     private String username;
     
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "role", nullable = false)
+    @Column(name = "role", nullable = false, length = 40)
     private String role;
 
 }
